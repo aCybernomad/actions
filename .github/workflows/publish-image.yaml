@@ -11,5 +11,6 @@ jobs:
       - name: build
         run: |
           docker build . -t bugzapper/iss-app-cicd:latest
-      - name: | 
+      - name: publish
+      - run: | 
           docker push bugzapper/iss-app-cicd:latest
