@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker imag
         run: |
           docker build . -t bugzapper/iss-app-cicd:latest
           docker push bugzapper/iss-app-cicd:latest
