@@ -1,5 +1,7 @@
 const pgp = require('pg-promise')();
 const axios = require('axios');
+const Router = require('koa-router');
+const Koa = require('koa');
 
 // Replace the following connection details with your Docker container information
 const dbConfig = {
@@ -11,6 +13,8 @@ const dbConfig = {
 };
 
 const db = pgp(dbConfig);
+const router = new Router();
+const app = new Koa();
 
 // Skapa tanell om den ej finnes, annars hoppa över
 const ensureSchema = async () => {
@@ -47,6 +51,19 @@ const ensureSchema = async () => {
       }
     }
     
+// Define the /health route
+router.get('/health', async (ctx, next) => {
+  await logIssCoordinates(); // Log the ISS coordinates
+  ctx.body = 'All systems go! - Status 200'; // Respond to the request
+});
+
+// Use the router
+app.use(router.routes()).use(router.allowedMethods());
+
+app.listen(3000, () => {
+   console.log('.:: Locked on to ISS ::.');
+ })
+
     // Fetch and write data every 5 seconds
     setInterval(async () => {
       await logIssCoordinates();
