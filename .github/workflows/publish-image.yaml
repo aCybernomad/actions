@@ -3,15 +3,24 @@ on:
   push:
     branches: [ "main" ]
 
+
 jobs:
-  publish_image:
+
+  build:
+
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: build
-        run: |
-          docker build . -t bugzapper/iss-app-cicd:latest
-      - name: publish
-      - run: | 
-          docker push bugzapper/iss-app-cicd:latest
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . -t bugzapper/iss-app-cicd:latest
+
+      - uses: actions/checkout@v3
+      - name: Push
+        run: docker push bugzapper/iss-app-cicd:latest
+
+
+
+
+
+
+
