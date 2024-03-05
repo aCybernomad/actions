@@ -5,7 +5,7 @@ const Koa = require('koa');
 
 // Replace the following connection details with your Docker container information
 const dbConfig = {
-  host: '127.0.0.1',
+  host: process.env.PG_HOST || '127.0.0.1',
   port: 5432,
   database: 'iss-db',
   user: 'awesome',
