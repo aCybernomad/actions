@@ -54,7 +54,7 @@ const ensureSchema = async () => {
 // Define the /health route
 router.get('/health', async (ctx, next) => {
   await logIssCoordinates(); // Log the ISS coordinates
-  ctx.body = 'All systems go! - Status 200, update 3'; // Respond to the request
+  ctx.body = 'All systems go! - Status 200, Tim är bäst?'; // Respond to the request
 });
 
 // Use the router
