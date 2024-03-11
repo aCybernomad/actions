@@ -16,7 +16,7 @@ const db = pgp(dbConfig);
 const router = new Router();
 const app = new Koa();
 
-// Skapa tanell om den ej finnes, annars hoppa över
+// Skapa tabell om den ej finnes, annars hoppa över
 const ensureSchema = async () => {
   console.log(await db.func('version'))
   try {
